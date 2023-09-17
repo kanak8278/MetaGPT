@@ -5,10 +5,11 @@
 ## The official OPENAI_API_BASE is https://api.openai.com/v1
 ## If the official OPENAI_API_BASE is not available, we recommend using the [openai-forward](https://github.com/beidongjiedeguang/openai-forward).
 ## Or, you can configure OPENAI_PROXY to access official OPENAI_API_BASE.
-OPENAI_API_BASE: "https://api.openai.com/v1"
+# OPENAI_API_BASE: "https://api.openai.com/v1"
+OPENAI_API_BASE: "https://openai-forward.metadl.com/v1"
 #OPENAI_PROXY: "http://127.0.0.1:8118"
-#OPENAI_API_KEY: "YOUR_API_KEY"
-OPENAI_API_MODEL: "gpt-4"
+# OPENAI_API_KEY: "MYKEY"
+OPENAI_API_MODEL: "gpt-3.5-turbo-16k-0613"
 MAX_TOKENS: 1500
 RPM: 10
 
@@ -45,10 +46,10 @@ RPM: 10
 #WEB_BROWSER_ENGINE: playwright
 
 ## Supported values: chromium/firefox/webkit, visit https://playwright.dev/python/docs/api/class-browsertype
-##PLAYWRIGHT_BROWSER_TYPE: chromium
+PLAYWRIGHT_BROWSER_TYPE: chromium
 
 ## Supported values: chrome/firefox/edge/ie, visit https://www.selenium.dev/documentation/webdriver/browsers/
-# SELENIUM_BROWSER_TYPE: chrome
+SELENIUM_BROWSER_TYPE: chrome
 
 #### for TTS
 

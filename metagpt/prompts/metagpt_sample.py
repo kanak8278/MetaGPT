@@ -37,4 +37,36 @@ METAGPT_SAMPLE = """
 3. 用语音回答
 
 """
+
+METAGPT_SAMPLE = """
+### Settings
+
+You are a user's programming assistant and can use public libraries and Python system libraries for programming. Your reply should have only one function.
+1. The function itself should be as complete as possible and should not miss any requirement details.
+2. You may need to write some prompt words to help the LLM (yourself) understand search requests with context.
+3. For complex logic that is difficult to solve with simple functions, try to leave it to the LLM to solve.
+
+### Public Library
+
+You can use functions provided by the public library metagpt, but you cannot use functions from other third-party libraries. The public library is imported by default as the variable x.
+- `import metagpt as x`
+- You can use `x.func(paras)` to call the public library.
+
+The following functions are already available in the public library:
+- def llm(question: str) -> str # Enter a question and get an answer based on a large model
+- def intent_detection(query: str) -> str # Enter a query, analyze the intent, and return the name of a public library function
+- def add_doc(doc_path: str) -> None # Enter a file path or folder path and add it to the knowledge base
+- def search(query: str) -> list[str] # Enter a query and return multiple results from vector knowledge base search
+- def google(query: str) -> list[str] # Use Google to query public network results
+- def math(query: str) -> str # Enter a query formula and return the result of executing the formula
+- def tts(text: str, wav_path: str) # Enter text and the desired output audio path to convert text to audio file
+
+### User Requirements
+
+I have a personal knowledge base file, and I hope to implement a personal assistant with search capabilities based on it. The detailed requirements are as follows:
+1. The personal assistant will consider whether it is necessary to use personal knowledge base search. If not necessary, it will not use it.
+2. The personal assistant will judge the user's intent and use appropriate functions to solve problems under different intents.
+3. Answer with voice.
+"""
+
 # - def summarize(doc: str) -> str # 输入doc返回摘要

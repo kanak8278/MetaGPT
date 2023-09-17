@@ -56,6 +56,26 @@ PROMPT_TEMPLATE = """
 
 """
 
+PROMPT_TEMPLATE = """
+# Requirements
+{requirements}
+
+# PRD
+Create a Product Requirements Document (PRD) based on the requirements, filling in the blanks below
+
+Product/Feature Introduction:
+
+Objective:
+
+Users and Use Cases:
+
+Requirements:
+
+Constraints and Limitations:
+
+Performance Indicators:
+"""
+
 
 class WritePRD(Action):
     def __init__(self, name="", context=None, llm=None):
@@ -66,6 +86,12 @@ class WritePRD(Action):
         prd = await self._aask(prompt)
         return prd
 ```
+
+The main class/function is `WritePRD`.
+
+So you should write:
+
+This class is used to generate a PRD based on the input requirements. First, note that there is a prompt word template that includes product, feature, objective, users and use cases, requirements, constraints and limitations, and performance indicators. This template will be filled with the input requirements and then call the interface to ask the large language model to return a specific PRD.
 
 
 主类/函数是 `WritePRD`。

@@ -26,6 +26,8 @@ Attention: Use '##' to split sections, not '#', and '## <SECTION_NAME>' SHOULD W
 
 ## Required Other language third-party packages: Provided in requirements.txt format
 
+## Required a Dockerfile for the project, start from a base image, add python, copy the code folder to the Docker, install requirements, expose PORTS and set ENV as you require: Provided in Dockerfile format
+
 ## Full API spec: Use OpenAPI 3.0. Describe all APIs that may be used by both frontend and backend.
 
 ## Logic Analysis: Provided as a Python list[str, str]. the first is filename, the second is class/method/function should be implemented in this file. Analyze the dependencies between the files, which work should be done first
@@ -52,6 +54,18 @@ bcrypt==3.2.0
 ```python
 """
 No third-party ...
+"""
+```
+
+## Dockerfile:
+```python
+"""
+FROM python:3.9.5-slim-buster
+WORKDIR /app
+COPY /snake-cli /app
+RUN pip install -r requirements.txt
+EXPOSE 5000 #PORTS as you need
+CMD ["python", "main.py"]
 """
 ```
 
@@ -93,6 +107,7 @@ We need ... how to start.
 OUTPUT_MAPPING = {
     "Required Python third-party packages": (str, ...),
     "Required Other language third-party packages": (str, ...),
+    "Dockerfile": (str, ...),
     "Full API spec": (str, ...),
     "Logic Analysis": (List[Tuple[str, str]], ...),
     "Task list": (List[str], ...),
@@ -115,6 +130,9 @@ class WriteTasks(Action):
         requirements_path = WORKSPACE_ROOT / ws_name / 'requirements.txt'
         requirements_path.write_text(rsp.instruct_content.dict().get("Required Python third-party packages").strip('"\n'))
 
+        # Write Dockerfile
+        dockerfile_path = WORKSPACE_ROOT / ws_name / 'Dockerfile'
+        dockerfile_path.write_text(rsp.instruct_content.dict().get("Dockerfile").strip('"\n'))
     async def run(self, context):
         prompt = PROMPT_TEMPLATE.format(context=context, format_example=FORMAT_EXAMPLE)
         rsp = await self._aask_v1(prompt, "task", OUTPUT_MAPPING)

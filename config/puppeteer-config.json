@@ -1,5 +1,5 @@
 {
-    "executablePath": "/usr/bin/chromium",
+    "executablePath": "/home/kanakraj/.cache/puppeteer",
     "args": [
         "--no-sandbox"
     ]

@@ -144,3 +144,63 @@ class WritePRD(Action):
         logger.debug(prompt)
         prd = await self._aask_v1(prompt, "prd", OUTPUT_MAPPING)
         return prd
+
+
+
+# FORMAT_EXAMPLE = """
+# ---
+# ## Original Requirements
+# The boss ... 
+
+
+# ## Explanation
+# The objective of the software ...
+
+# ## Product Goals
+# ```python
+# [
+#     "Create a ...",
+# ]
+# ```
+
+# ## User Stories
+# ```python
+# [
+#     "As a user, ...",
+# ]
+# ```
+
+# ## Competitive Analysis
+# ```python
+# [
+#     "Python Snake Game: ...",
+# ]
+# ```
+
+# ## Competitive Quadrant Chart
+# ```mermaid
+# quadrantChart
+#     title Reach and engagement of campaigns
+#     ...
+#     "Our Target Product": [0.6, 0.7]
+# ```
+
+# ## Requirement Analysis
+# The product should be a ...
+
+# ## Requirement Pool
+# ```python
+# [
+#     ("End game ...", "P0")
+# ]
+# ```
+
+# ## UI Design draft
+# Give a basic function description, and a draft
+
+# ## Anything UNCLEAR
+# There are no unclear points.
+# ---
+# """
+
+## Explanation: Using Original Requirements, provide me a extensive information about the software would work in real-life. Focus on high level working and objective. I don't need any technical implementation.

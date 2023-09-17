@@ -46,7 +46,7 @@ class SoftwareCompany(BaseModel):
         """Start a project from publishing boss requirement."""
         self.idea = idea
         self.environment.publish_message(Message(role="BOSS", content=idea, cause_by=BossRequirement))
-
+    
     def _save(self):
         logger.info(self.json())
 

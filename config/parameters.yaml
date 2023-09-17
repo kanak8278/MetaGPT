@@ -1,0 +1,7 @@
+Idea: "Write a Course Review webapp like IMBD is for Movies."
+Investment: 2.0
+N_Rounds: 10
+Code_Review: True
+Run_Tests: True
+# Roles Config File
+Roles_Config_File: "config/roles_config.yaml"

@@ -42,8 +42,14 @@ class Config(metaclass=Singleton):
         self._configs = {}
         self._init_with_config_files_and_env(self._configs, yaml_file)
         logger.info("Config loading done.")
+        openai_api_key = os.environ.get('OPENAI_API_KEY')
+        if openai_api_key:
+            self.openai_api_key = openai_api_key
+        else:
+            raise KeyError("Environment variable OPENAI_API_KEY is not set.")
+    
         self.global_proxy = self._get("GLOBAL_PROXY")
-        self.openai_api_key = self._get("OPENAI_API_KEY")
+        # self.openai_api_key = self._get("OPENAI_API_KEY")
         self.anthropic_api_key = self._get("Anthropic_API_KEY")
         if (not self.openai_api_key or "YOUR_API_KEY" == self.openai_api_key) and (
             not self.anthropic_api_key or "YOUR_API_KEY" == self.anthropic_api_key
