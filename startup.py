@@ -6,7 +6,7 @@ import fire
 import yaml
 import os
 
-from metagpt.roles import Architect, Engineer, ProductManager, ProjectManager, QaEngineer
+from metagpt.roles import Architect, Engineer, ProductManager, ProjectManager, QaEngineer, ProjectAnalyzer
 from metagpt.software_company import SoftwareCompany
 
 def read_roles_config(roles_config_file: str = "roles_config.yaml"):
@@ -36,10 +36,15 @@ async def startup(idea: str, investment: float = 3.0, n_round: int = 5,
     qa_engineer = roles_config['QaEngineer']    
     
     company = SoftwareCompany()
-    company.hire([ProductManager(profile=product_manager['profile'], goal=product_manager['goal'], constraints=product_manager['constraints']),
-                  Architect(profile=architect['profile'], goal=architect['goal'], constraints=architect['constraints']),
-                  ProjectManager(profile=project_manager['profile'], goal=project_manager['goal'], constraints=project_manager['constraints']),
-                  Engineer(profile=engineer['profile'], goal=engineer['goal'], constraints=engineer['constraints'], n_borg=5, use_code_review=code_review)])
+    company.hire(
+        [
+        ProductManager(profile=product_manager['profile'], goal=product_manager['goal'], constraints=product_manager['constraints']),
+        Architect(profile=architect['profile'], goal=architect['goal'], constraints=architect['constraints']),
+        ProjectManager(profile=project_manager['profile'], goal=project_manager['goal'], constraints=project_manager['constraints']),
+        Engineer(profile=engineer['profile'], goal=engineer['goal'], constraints=engineer['constraints'], n_borg=5, use_code_review=code_review), 
+        ProjectAnalyzer()
+        ],
+            )
     if run_tests:
         # developing features: run tests on the spot and identify bugs (bug fixing capability comes soon!)
         company.hire([QaEngineer()])
